@@ -4,10 +4,12 @@ import QtQuick.Controls 1.4
 import QtCharts 2.3
 ApplicationWindow {
     id:root
+
     visible: true
     width: 640
     height: 480
     title: qsTr("Hello World")
+    property LineSeries line1
 //Column
 //{
     Row
@@ -18,6 +20,17 @@ ApplicationWindow {
         {
             id:openFile
             text: "Open"
+        }
+        Button
+        {
+            id:addLine
+            text: "新加曲线"
+            onClicked:
+            {
+                line1=chartView1.createSeries(ChartView.SeriesTypeLine,"test",xAxis,yAxis);
+                line1.append(10,2);
+                line1.append(1,5);
+            }
         }
     }
     ChartView
@@ -56,7 +69,9 @@ ApplicationWindow {
             theme: ChartView.ChartThemeDark
 
     }
-
+    Button{
+        id:test1;
+    }
     //}
     Component.onCompleted: {
         console.log(chartView1.width,chartView1.height,row1.height);
