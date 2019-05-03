@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 1.4
 import QtCharts 2.3
-Window {
+ApplicationWindow {
     id:root
     visible: true
     width: 640
@@ -26,9 +26,14 @@ Window {
         //anchors.fill: parent
         anchors.top: row1.bottom
         anchors.bottom: root.bottom
-       anchors.left: root.left
-       anchors.right: root.right
+        anchors.left: root.left
+        anchors.right: root.right
+        y:row1.y+row1.height
+        x:0
+        width:root.width
+        height: root.height-row1.height
         //height:500
+       //width:root.width
         ValueAxis{
             id:xAxis
             min:-10
@@ -48,6 +53,12 @@ Window {
                 XYPoint{x:1;y:2}
                 XYPoint{x:2;y:3}
             }
-        }
+            theme: ChartView.ChartThemeDark
+
+    }
+
     //}
+    Component.onCompleted: {
+        console.log(chartView1.width,chartView1.height,row1.height);
+    }
 }
